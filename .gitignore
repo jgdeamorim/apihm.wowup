@@ -1,0 +1,16 @@
+# Arquivos sensíveis
+.env
+
+# Dependências e pacotes
+__pycache__/
+venv/
+*.pyc
+*.pyo
+
+# Logs e dados temporários
+*.log
+storage/
+
+# Docker
+*.db
+.dockerignore

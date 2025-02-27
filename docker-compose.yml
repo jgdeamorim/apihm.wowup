@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    container_name: hubmercado_db
+    restart: always
+    environment:
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: senha
+      POSTGRES_DB: hubmercado
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.0.5
+    container_name: hubmercado_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  backend:
+    build: .
+    container_name: hubmercado_backend
+    restart: always
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://usuario:senha@db:5432/hubmercado
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8000:8000"
+
+  worker:
+    build: .
+    container_name: hubmercado_worker
+    restart: always
+    depends_on:
+      - backend
+      - redis
+    command: ["celery", "-A", "worker.celery_app", "worker", "--loglevel=info"]
+
+volumes:
+  postgres_data:
