@@ -1,6 +1,4 @@
-from .connection import engine  # Mantemos apenas a importação do engine
-from .models import Base
-
-# Criar tabelas no banco de dados
-def init_db():
-    Base.metadata.create_all(bind=engine)
+# Inicialização do módulo de banco de dados
+from .connection import Base, engine, get_db
+from .models import *
+from .schemas import *
