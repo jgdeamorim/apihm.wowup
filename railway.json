@@ -1,0 +1,9 @@
+{
+  "build": {
+    "watchPaths": ["src/**"]
+  },
+  "deploy": {
+    "startCommand": "gunicorn -k uvicorn.workers.UvicornWorker -w 4 main:app --bind 0.0.0.0:8000",
+    "healthcheckPath": "/health"
+  }
+}

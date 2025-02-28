@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     """Configurações principais do sistema"""
 
     # 📦 Banco de Dados
-    DATABASE_URL: str = os.getenv("DATABASE_URL")
+    DATABASE_URL = os.getenv("DATABASE_URL") + "?pool_size=5&max_overflow=10"
     if not DATABASE_URL:
         raise ValueError("⚠️ DATABASE_URL não foi definida no ambiente!")
 
