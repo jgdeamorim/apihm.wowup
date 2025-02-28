@@ -4,6 +4,8 @@ FROM python:3.11
 # Define o diretório de trabalho
 WORKDIR /app
 
+ENV PYTHONPATH=/app
+
 # Copia os arquivos necessários para dentro do container
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
