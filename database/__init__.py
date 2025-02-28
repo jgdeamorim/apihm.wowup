@@ -1,5 +1,5 @@
-from database.connection import SessionLocal, engine
-from database.models import Base
+from .connection import engine  # Mantemos apenas a importação do engine
+from .models import Base
 
 # Criar tabelas no banco de dados
 def init_db():

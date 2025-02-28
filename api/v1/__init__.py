@@ -4,13 +4,13 @@ from fastapi import APIRouter
 router = APIRouter(prefix="/api/v1")
 
 # Importação dos módulos da API
-from api.v1.admin import router as admin_router
-from api.v1.bling import router as bling_router
-from api.v1.clientes import router as clientes_router
-from api.v1.mercadolivre import router as mercadolivre_router
-from api.v1.openai import router as openai_router
-from api.v1.produtos import router as produtos_router
-from api.v1.status import router as status_router
+from .admin import router as admin_router
+from .bling import router as bling_router
+from .clientes import router as clientes_router
+from .mercadolivre import router as mercadolivre_router
+from .openai import router as openai_router
+from .produtos import router as produtos_router
+from .status import router as status_router
 
 # Inclusão dos sub-roteadores na API principal
 router.include_router(admin_router, prefix="/admin", tags=["Admin"])

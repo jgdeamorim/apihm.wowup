@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-from api.v1 import admin, bling, clientes, mercadolivre, openai, produtos, status
+from .v1 import admin, bling, clientes, mercadolivre, openai, produtos, status
 
 router.include_router(admin.router, prefix="/admin", tags=["Admin"])
 router.include_router(bling.router, prefix="/bling", tags=["Bling"])
